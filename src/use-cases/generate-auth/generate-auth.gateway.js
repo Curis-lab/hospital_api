@@ -3,7 +3,7 @@ import { MixPatientRepository } from "../../adapters/common/repositories/patient
 import MixUnitOfWorkService from "../../adapters/common/services/MixUnitOfWorkServices.js";
 
 const generateAuthGateway = MixUnitOfWorkService(
-  MixDoctorRepository(MixPatientRepository(class {}))
+	MixDoctorRepository(MixPatientRepository(class {})),
 );
 
 export default generateAuthGateway;

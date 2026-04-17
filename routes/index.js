@@ -1,9 +1,9 @@
 import { Router } from "express";
 import authRouter from "./auth.js";
-import userRouter from "./user.js";
+import bookingRouter from "./booking.js";
 import doctorRouter from "./doctor.js";
 import reviewRouter from "./review.js";
-import bookingRouter from "./booking.js";
+import userRouter from "./user.js";
 
 const router = Router();
 
