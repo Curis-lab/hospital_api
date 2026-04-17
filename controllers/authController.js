@@ -34,6 +34,7 @@ export const auth = async (req, res) => {
   });
 };
 
+
 export const register = async (req, res) => {
   const { email, password, name, role, gender } = req.body;
 
@@ -98,6 +99,7 @@ async function loginController(data) {
       return httpResponseFormat(400, "Password is not correct.");
     }
 
+    //runtime level, but it flexible, high complexity.
     const token = tokenGenerate(user);
     const { role, appointments, _id, __v, ...rest } = user._doc;
 
