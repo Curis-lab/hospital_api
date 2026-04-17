@@ -22,7 +22,7 @@ export const redisClient = redis.createClient({
   },
 });
 
-redisClient.connect(console.log("Redis is connected")).catch(console.err);
+// redisClient.connect(console.log("Redis is connected")).catch(console.err);
 
 const connectDB = async () => {
   mongoose.set("strictQuery", false);

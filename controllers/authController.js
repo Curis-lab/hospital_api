@@ -2,6 +2,9 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import uploadImage from "../src/infrastructure/plugins/imagekit/upload-file-imagekit.js";
 import generateAuthGateway from "../src/use-cases/generate-auth/generate-auth.gateway.js";
+import httpResponseFormat from "../utils/http-response-format.js";
+import { isCorrectPassword, tokenGenerate } from "../services/auth-services.js";
+import UserServices from "../services/user-services.js";
 
 const authGateway = new generateAuthGateway();
 
@@ -15,27 +18,11 @@ async function findUserByEmailAndRole(email, role) {
   return user;
 }
 
-async function findUserByEmail(email) {
-  let user;
-  user = await authGateway.getDoctorByEmail(email);
-  if (!user) {
-    user = await authGateway.findPatientByEmail(email);
-  }
-  return user;
-}
-
-/** password processing */
-
 async function passwordSalting(passsword) {
   const salt = await bcrypt.genSalt(10);
   const hashPassword = await bcrypt.hash(passsword, salt);
   return hashPassword;
 }
-
-const generateToken = (user) =>
-  jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
-    expiresIn: "15d",
-  });
 
 export const auth = async (req, res) => {
   const { token, expire, signature } = imagekit.getAuthenticationParameters();
@@ -93,44 +80,38 @@ export const register = async (req, res) => {
   }
 };
 
-export const login = async (req, res) => {
-  const { email, password } = req.body;
-
+async function loginController(data) {
   try {
-    const user = await findUserByEmail(email);
+    const { email, password } = data;
+    const user = await new UserServices().findUserByMail(email);
 
     if (!user) {
-      res.status(404).json({ status: false, message: "User not found." });
-      return;
+      return httpResponseFormat(404, "User not found.");
     }
 
-    if (!user.password) {
-      res
-        .status(400)
-        .json({ status: false, message: "Password is not exist." });
-      return;
+    const hashed = user.password;
+    if (!hashed) {
+      return httpResponseFormat(400, "Password is not exist");
     }
 
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordMatch) {
-      res
-        .status(400)
-        .json({ status: false, message: "Passwrod is not correct." });
-      return;
+    if (!isCorrectPassword(password, hashed)) {
+      return httpResponseFormat(400, "Password is not correct.");
     }
 
-    const token = generateToken(user);
-    const { role, appointments, ...rest } = user._doc;
-    res.status(200).json({
-      status: true,
-      message: "Successfully logged in.",
+    const token = tokenGenerate(user);
+    const { role, appointments, _id, __v, ...rest } = user._doc;
+
+    return httpResponseFormat(200, "Successfully logged in.", {
       token,
-      data: { ...rest },
+      ...rest,
       role,
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ status: false, message: "Failed to login." });
+    return httpResponseFormat(500, "Failed to login.");
   }
+}
+
+export const login = async (req, res) => {
+  const { code, message, body } = await loginController(req.body);
+  res.status(code).json({ message, body });
 };
