@@ -1,0 +1,157 @@
+
+###auth (used)
+GET http://localhost:8000/api/v1/auth/auth
+Content-Type: application/json
+
+
+### register (used)
+POST http://localhost:8000/api/v1/auth/register
+Content-Type: application/json
+
+{
+    "name":"tuntun",
+    "email":"tuntun@gmail.com",
+    "password":"tuntun",
+    "role":"doctor",
+    "photo":"https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg",
+    "gender":"male"
+}
+
+### login (used)
+POST http://localhost:8000/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email":"jhon@gmail.com",
+    "password":"jhon"
+}
+
+### Production authentication
+POST https://medibook-g32h.onrender.com/api/v1/auth/login
+Content-Type: application/json
+
+{
+    "email":"h@gmail.com",
+    "password":"h"
+}
+
+
+# --------------------- user session ------------------
+### get all users
+GET http://localhost:8000/api/v1/user
+Content-Type: application/json
+
+
+###get single user (used)
+GET http://localhost:8000/api/v1/user/685614c3eb64125df048c31c
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTYxNGMzZWI2NDEyNWRmMDQ4YzMxYyIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzUwNDgyNTQxLCJleHAiOjE3NTE3Nzg1NDF9.EmSRqPdlH88wMXcudGjIlSzdihZtYYaz3fHzR_MGuYk
+
+
+###delete single user
+DELETE http://localhost:8000/api/v1/user/685614c3eb64125df048c31c
+Content-Type: application/json
+
+###edit single user
+PUT http://localhost:8000/api/v1/user/685614c3eb64125df048c31c
+Content-Type: multipart/form-data
+Authentication: `Bearer `
+
+{
+    "name": "tun tun"
+}
+
+#------------------ end user session ------------
+
+#----------------- doctors -------------------
+
+### get all doctors (used)-public route
+# GET https://medibook-g32h.onrender.com/api/v1/doctors
+GET http://localhost:8000/api/v1/doctors?query=man
+Content-Type: application/json
+
+
+###get single doctor (used) (public)
+GET http://localhost:8000/api/v1/doctors/6860ec050dda14c957e6ed3f
+Content-Type: application/json
+
+### delete doctor
+DELETE  http://localhost:8000/api/v1/doctors/6869e5c3bf6e32b573f28bb3
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NjllNWMzYmY2ZTMyYjU3M2YyOGJiMyIsInJvbGUiOiJkb2N0b3IiLCJpYXQiOjE3NTIyNzk1MDUsImV4cCI6MTc1MzU3NTUwNX0.k_-e_1XUbMzhUrxslNA3Qvxfnsccc1biRYjANHer-Po
+
+
+### update doctor to get approved (used)
+PUT http://localhost:8000/api/v1/doctors/6882f70d36368655d8c2ee0f
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ODJmNzBkMzYzNjg2NTVkOGMyZWUwZiIsInJvbGUiOiJkb2N0b3IiLCJpYXQiOjE3NTQ1NDA2NjYsImV4cCI6MTc1NTgzNjY2Nn0.tNerrOx87mKblJNjympwEdkHWIvL5Ed0ukIHgRTI9a4
+
+{
+    "specialization": "cardiologist",
+    "qualifications": [
+        {
+            "degree": "MBBS", 
+            "university": "Yangon University",
+            "startDate": "2020-01-01",
+            "endDate": "2024-01-01"
+        }
+    ]
+}
+
+###delete single user
+DELETE http://localhost:8000/api/v1/doctors/685614c3eb64125df048c31c
+Content-Type: application/json
+
+# --------------------- end doctors session -------------------
+
+###edit single user
+PUT http://localhost:8000/api/v1/doctors/685601d9a7206c468dd3d3f5
+Content-Type: application/json
+
+{
+    "name": "tun tun"
+}
+
+### write review for doctor
+POST http://localhost:8000/api/v1/doctors/685601d9a7206c468dd3d3f5/reviews
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTYxNGMzZWI2NDEyNWRmMDQ4YzMxYyIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzUwNDkzNDg2LCJleHAiOjE3NTE3ODk0ODZ9.nGPiHeAGGadfl6bUenaMiwW1ZLtJYVeFCli2_ujfWrg
+
+{
+    "reviewText":"good experience",
+    "rating":5
+}
+
+
+### user profile (used)
+GET http://localhost:8000/api/v1/user/profile/me
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NTYxNGMzZWI2NDEyNWRmMDQ4YzMxYyIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzUyMDc0MDM5LCJleHAiOjE3NTMzNzAwMzl9.Ltz6XOJerlk4fw9-kVSWrcwDlK6EgPYo81i_bD151K8
+
+
+### appointment booking
+POST http://localhost:8000/api/v1/bookings/checkout-session/688e22e5f009deb6e70c5856
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGM3ZDFjNzNhOTdiOWExOGJmZWQ5MiIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzU0MjcyMzkwLCJleHAiOjE3NTU1NjgzOTB9.n3GcW9IWGjOdFZX1Od_cXbrwjaP3pfNGh_IkZxOM8LM
+
+{
+    "appointmentDate": "2025-04-01"
+}
+
+
+
+### doctor appointment (user)
+GET http://localhost:8000/api/v1/user/appointments/my-appointment
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGM3ZDFjNzNhOTdiOWExOGJmZWQ5MiIsInJvbGUiOiJwYXRpZW50IiwiaWF0IjoxNzU0MjcyMzkwLCJleHAiOjE3NTU1NjgzOTB9.n3GcW9IWGjOdFZX1Od_cXbrwjaP3pfNGh_IkZxOM8LM
+
+
+### doctor profile (used)
+GET http://localhost:8000/api/v1/doctors/profile/me
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzdkMzRlZDIxYmQ3ZDRhMDdkNDdmNSIsInJvbGUiOiJkb2N0b3IiLCJpYXQiOjE3NTMwNDE1NTgsImV4cCI6MTc1NDMzNzU1OH0.1dCkZnrOkjFelnUT3L5rh9yOc3rYpaE9thf05AwqW7w
+
+### appointment for doctor's profile
+GET http://localhost:8000/api/v1/doctors/appointments-list/me
+Content-Type: application/json
+Authentication: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NzdkMzRlZDIxYmQ3ZDRhMDdkNDdmNSIsInJvbGUiOiJkb2N0b3IiLCJpYXQiOjE3NTMwNDE1NTgsImV4cCI6MTc1NDMzNzU1OH0.1dCkZnrOkjFelnUT3L5rh9yOc3rYpaE9thf05AwqW7w
