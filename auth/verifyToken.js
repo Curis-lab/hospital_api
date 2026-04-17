@@ -1,4 +1,4 @@
-'use strict';
+
 
 import jwt from "jsonwebtoken";
 import Doctor from "../models/DoctorSchema.js";

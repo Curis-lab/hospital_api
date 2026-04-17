@@ -1,4 +1,4 @@
-"use strict";
+
 
 import httpResponseFormat from "../utils/http-response-format.js";
 import generateDoctorGateway from "../src/use-cases/generate-doctor/generate-doctor.gateway.js";
