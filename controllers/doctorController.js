@@ -1,14 +1,28 @@
 import { redisClient } from "../http-server.js";
-import doctorInteractor from "../interactors/doctors-interactor.js";
 import Booking from "../models/BookingSchema.js";
 import { deleteImageKitImage } from "../src/infrastructure/plugins/imagekit/delete-file-imagekit.js";
 import generateDoctorGateway from "../src/use-cases/generate-doctor/generate-doctor.gateway.js";
-import missingField from "../utils/checkField.js";
+import missingField from "../utils/check-field.js";
 
 const doctorGateway = new generateDoctorGateway();
 
+async function doctorInteractor(search) {
+	try {
+		let doctorsFromSearch;
+		if (search) {
+			doctorsFromSearch = await doctorGateway.getAllDoctorsByQuery(search);
+		}
+		doctorsFromSearch = await doctorGateway.getAllDoctors();
+
+		if (doctorsFromSearch.length <= 0) {
+			return httpResponseFormat(404, "Doctors have not yet.");
+		}
+		return httpResponseFormat(200, "Doctors found.", doctorsInfo);
+	} catch (err) {
+		return httpResponseFormat(500, "Internal server error on doctors.");
+	}
+}
 export const updateDoctor = async (req, res) => {
-	console.log(req.userId);
 	try {
 		const { email, ...updateData } = req.body;
 

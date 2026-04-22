@@ -2,10 +2,11 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import http from "node:http";
 import mongoose from "mongoose";
-import morgan from "morgan";
 import redis from "redis";
 import BaseRouter from "./routes/index.js";
+import socketServer from "./socket/init.js";
 import createScopeContainerMiddleware from "./src/infrastructure/web/middlewares/create-scope-container.middleware.js";
 
 dotenv.config();
@@ -67,7 +68,11 @@ export function startHTTPServer(container) {
 			error: err.message,
 		});
 	});
-	app.listen(port, () => {
+
+	const server = http.createServer(app);
+	socketServer(server);
+
+	server.listen(port, () => {
 		connectDB();
 		console.log(`Server is lived on port ${port}`);
 	});

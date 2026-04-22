@@ -1,10 +1,13 @@
+'use strict';
+
 import UserSchema from "../models/UserSchema.js";
 import generateAuthGateway from "../src/use-cases/generate-auth/generate-auth.gateway.js";
+import ROLE from "../utils/constant.js";
 
 const authGateway = new generateAuthGateway();
 
 export default class UserServices {
-	constructor(role = "patient") {
+	constructor(role = ROLE.PATIENT) {
 		this.role = role;
 	}
 	async findUserByMail(email) {
@@ -20,7 +23,12 @@ export default class UserServices {
 		await user.save();
 	}
 	async isMailExist(email) {
+		
 		const user = await UserSchema.find({ email, role: this.role });
 		return user.length > 0;
+	}
+	async getUserById(id){
+		const user = await UserSchema.findById(id);
+		return user; 
 	}
 }

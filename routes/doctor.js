@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { authenticate, restrict } from "../auth/verifyToken.js";
+import { authenticate, restrict } from "../middlewares/verify-token.js";
 import {
 	deleteDoctor,
 	getAllDoctors,

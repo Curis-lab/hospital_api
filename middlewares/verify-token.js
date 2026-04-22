@@ -1,6 +1,7 @@
+'use strict';
+
 import jwt from "jsonwebtoken";
-import Doctor from "../models/DoctorSchema.js";
-import User from "../models/UserSchema.js";
+import UserServices from "../services/user-services.js";
 
 export const authenticate = async (req, res, next) => {
 	const authToken = req.headers.authentication;
@@ -29,16 +30,8 @@ export const authenticate = async (req, res, next) => {
 
 export const restrict = (roles) => async (req, res, next) => {
 	const userId = req.userId;
-	let user;
 
-	const patient = await User.findById(userId);
-	const doctor = await Doctor.findById(userId);
-
-	if (patient) {
-		user = patient;
-	} else if (doctor) {
-		user = doctor;
-	}
+	const user = await new UserServices().getUserById(userId);
 
 	if (!roles.includes(user.role)) {
 		res.status(401).json({
