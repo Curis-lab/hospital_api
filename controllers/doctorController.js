@@ -1,5 +1,5 @@
 import { redisClient } from "../http-server.js";
-import Booking from "../models/BookingSchema.js";
+import Booking from "../models/booking-schema.js";
 import { deleteImageKitImage } from "../src/infrastructure/plugins/imagekit/delete-file-imagekit.js";
 import generateDoctorGateway from "../src/use-cases/generate-doctor/generate-doctor.gateway.js";
 import missingField from "../utils/check-field.js";

@@ -1,4 +1,4 @@
-import DoctorSchema from "../models/DoctorSchema.js";
+import DoctorSchema from "../models/doctor-schema.js";
 import { isEmail, isString } from "../utils/validators.js";
 
 export default class DoctorServices {

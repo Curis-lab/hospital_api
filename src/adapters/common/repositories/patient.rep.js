@@ -1,4 +1,4 @@
-import Patient from "../../../../models/UserSchema.js";
+import Patient from "../../../../models/user-schema.js";
 
 export function MixPatientRepository(Gateway) {
 	return class PatientRepository extends Gateway {

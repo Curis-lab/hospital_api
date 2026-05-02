@@ -1,6 +1,6 @@
 import Stripe from "stripe";
-import Doctor from "../models/DoctorSchema.js";
-import User from "../models/UserSchema.js";
+import Doctor from "../models/doctor-schema.js";
+import User from "../models/user-schema.js";
 import { MixBookingRepository } from "../src/adapters/common/repositories/book.rep.js";
 import { MixDoctorRepository } from "../src/adapters/common/repositories/doctor.rep.js";
 import { MixPatientRepository } from "../src/adapters/common/repositories/patient.rep.js";

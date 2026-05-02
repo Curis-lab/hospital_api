@@ -1,4 +1,4 @@
-import UserSchema from "../models/UserSchema.js";
+import UserSchema from "../models/user-schema.js";
 import generateAuthGateway from "../src/use-cases/generate-auth/generate-auth.gateway.js";
 import ROLE from "../utils/constant.js";
 

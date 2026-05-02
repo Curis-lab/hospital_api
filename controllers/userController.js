@@ -1,5 +1,5 @@
-import Booking from "../models/BookingSchema.js";
-import User from "../models/UserSchema.js";
+import Booking from "../models/booking-schema.js";
+import User from "../models/user-schema.js";
 import { MixDoctorRepository } from "../src/adapters/common/repositories/doctor.rep.js";
 import { MixPatientRepository } from "../src/adapters/common/repositories/patient.rep.js";
 import MixUnitOfWorkService from "../src/adapters/common/services/MixUnitOfWorkServices.js";

@@ -1,3 +1,6 @@
+
+
+
 import { Server } from "socket.io";
 
 /**
@@ -5,7 +8,7 @@ import { Server } from "socket.io";
  * @param {import("http").Server} server
  */
 
-export default function socketServer(server) {
+export default function notificationServer(server) {
 	const io = new Server(server, {
 		cors: {
 			origin: "*",
@@ -24,5 +27,10 @@ export default function socketServer(server) {
 		socket.on("disconnect", () => {
 			console.log("User disconnected:", socket.id);
 		});
+
+		socket.on('send:noti',(data)=>{
+			socket.emit('recv:notif',data);
+		});
+		
 	});
 }

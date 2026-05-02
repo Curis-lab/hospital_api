@@ -6,7 +6,7 @@ import express from "express";
 import mongoose from "mongoose";
 import redis from "redis";
 import BaseRouter from "./routes/index.js";
-import socketServer from "./socket/init.js";
+import notificationServer from "./notification/init.js";
 import createScopeContainerMiddleware from "./src/infrastructure/web/middlewares/create-scope-container.middleware.js";
 
 dotenv.config();
@@ -70,7 +70,7 @@ export function startHTTPServer(container) {
 	});
 
 	const server = http.createServer(app);
-	socketServer(server);
+	notificationServer(server);
 
 	server.listen(port, () => {
 		connectDB();

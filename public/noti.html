@@ -1,0 +1,33 @@
+<!-- purpose: testing socket.io work corrrectly -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Send notification</h1>
+    <input type="text" id="postCreatedBy" placeholder="Post created by" />
+    <input type="text" id="postTitle" placeholder="Post By Title" />
+    <button id="sendButton">Send Notificaiton</button>
+    <script>
+      const socket = io();
+      document.getElementById("sendButton").addEventListener("click", () => {
+        const postCreatedBy = document.getElementById("postCreatedBy").value;
+        const postTitle = document.getElementById("postTitle").value;
+
+        if (postCreatedBy.trim() && postTitle.trim()) {
+          socket.emit("send:noti", { postCreatedBy, postTitle });
+          alert("Notificaiton send");
+          document.getElementById("postCreatedBy").value = "";
+          document.getElementById("postTitle").value = "";
+        } else {
+          alert("Please fill the fields.");
+        }
+      });
+    </script>
+    <script src="../notification/client.js"></script>
+  </body>
+</html>

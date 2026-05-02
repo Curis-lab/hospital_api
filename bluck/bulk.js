@@ -1,6 +1,6 @@
 import csv from "csv-parser";
 import fs from "fs";
-import UserSchema from "../models/UserSchema.js";
+import UserSchema from "../models/user-schema.js";
 import DoctorServices from "../services/doctor-services.js";
 
 export class CSVBulkUploader {

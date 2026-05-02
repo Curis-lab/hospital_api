@@ -1,4 +1,4 @@
-import Book from "../../../../models/BookingSchema.js";
+import Book from "../../../../models/booking-schema.js";
 
 export function MixBookingRepository(Gateway) {
 	return class PatientRepository extends Gateway {
