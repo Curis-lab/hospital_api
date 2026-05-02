@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { authenticate, restrict } from "../middlewares/verify-token.js";
 import {
 	createReview,
 	getAllReviews,
 } from "../controllers/reviewController.js";
+import { authenticate, restrict } from "../middlewares/verify-token.js";
 
 const router = Router({ mergeParams: true });
 

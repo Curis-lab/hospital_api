@@ -5,7 +5,6 @@ import { Server } from "socket.io";
  * @param {import("http").Server} server
  */
 
-
 export default function socketServer(server) {
 	const io = new Server(server, {
 		cors: {

@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { authenticate, restrict } from "../middlewares/verify-token.js";
 import {
 	deleteUser,
 	getAllUser,
@@ -8,6 +7,7 @@ import {
 	getUserProfile,
 	updateUser,
 } from "../controllers/userController.js";
+import { authenticate, restrict } from "../middlewares/verify-token.js";
 
 const router = Router();
 

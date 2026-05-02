@@ -1,5 +1,3 @@
-'use strict';
-
 import UserSchema from "../models/UserSchema.js";
 import generateAuthGateway from "../src/use-cases/generate-auth/generate-auth.gateway.js";
 import ROLE from "../utils/constant.js";
@@ -22,13 +20,17 @@ export default class UserServices {
 		const user = new UserSchema(data);
 		await user.save();
 	}
+
 	async isMailExist(email) {
-		
-		const user = await UserSchema.find({ email, role: this.role });
-		return user.length > 0;
+		try {
+			const user = await UserSchema.find({ email, role: this.role });
+			return user.length > 0;
+		} catch (err) {
+			throw new Error(`Error : ${err.message}`);
+		}
 	}
-	async getUserById(id){
+	async getUserById(id) {
 		const user = await UserSchema.findById(id);
-		return user; 
+		return user;
 	}
 }
