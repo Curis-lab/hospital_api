@@ -1,33 +1,74 @@
-<!-- purpose: testing socket.io work corrrectly -->
+<!-- purpose: testing socket.io works correctly -->
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Socket.IO Test</title>
   </head>
+
   <body>
-    <h1>Send notification</h1>
+    <h1>Send Notification</h1>
+
     <input type="text" id="postCreatedBy" placeholder="Post created by" />
-    <input type="text" id="postTitle" placeholder="Post By Title" />
-    <button id="sendButton">Send Notificaiton</button>
+    <input type="text" id="postTitle" placeholder="Post title" />
+
+    <button id="sendButton">Send Notification</button>
+
+    <hr />
+
+    <button onclick="sendMessage()">Send Test Message</button>
+
+    <!-- Socket.IO client -->
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+
     <script>
-      const socket = io();
+      // connect to backend
+      const socket = io("http://localhost:8000");
+
+      // connection status
+      socket.on("connect", () => {
+        console.log("Connected:", socket.id);
+      });
+
+      // receive normal message
+      socket.on("receive_message", (data) => {
+        console.log("Message received:", data);
+      });
+
+      // receive notification
+      socket.on("recv:notif", (data) => {
+        console.log("Notification received:", data);
+      });
+
+      // send notification button
       document.getElementById("sendButton").addEventListener("click", () => {
         const postCreatedBy = document.getElementById("postCreatedBy").value;
         const postTitle = document.getElementById("postTitle").value;
 
-        if (postCreatedBy.trim() && postTitle.trim()) {
-          socket.emit("send:noti", { postCreatedBy, postTitle });
-          alert("Notificaiton send");
-          document.getElementById("postCreatedBy").value = "";
-          document.getElementById("postTitle").value = "";
-        } else {
+        if (!postCreatedBy.trim() || !postTitle.trim()) {
           alert("Please fill the fields.");
+          return;
         }
+
+        socket.emit("send:noti", {
+          postCreatedBy,
+          postTitle,
+        });
+
+        console.log("Notification sent");
+
+        document.getElementById("postCreatedBy").value = "";
+        document.getElementById("postTitle").value = "";
       });
+      
+      function sendMessage() {
+        socket.emit("send:noti", JSON.stringify({
+          type:'notification',
+          timestamp: new Date().now
+        }));
+      }
     </script>
-    <script src="../notification/client.js"></script>
   </body>
 </html>
