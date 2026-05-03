@@ -6,7 +6,7 @@ import express from "express";
 import mongoose from "mongoose";
 import redis from "redis";
 import BaseRouter from "./routes/index.js";
-import notificationServer from "./notification/init.js";
+import notificationServer from "./notification/index.js";
 import createScopeContainerMiddleware from "./src/infrastructure/web/middlewares/create-scope-container.middleware.js";
 
 dotenv.config();

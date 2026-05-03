@@ -1,14 +1,16 @@
 import { Router } from "express";
 import {
-	deleteDoctor,
-	getAllDoctors,
-	getDoctorAppointments,
-	getDoctorProfile,
-	getSingleDoctor,
-	updateDoctor,
+  bluckDoctorsInfomation,
+  deleteDoctor,
+  getAllDoctors,
+  getDoctorAppointments,
+  getDoctorProfile,
+  getSingleDoctor,
+  updateDoctor,
 } from "../controllers/doctorController.js";
 import { authenticate, restrict } from "../middlewares/verify-token.js";
 import reviewRouter from "./review.js";
+import { upload } from "../utils/multer-upload.js";
 
 const router = Router();
 
@@ -20,10 +22,11 @@ router.put("/", authenticate, restrict(["doctor"]), updateDoctor);
 router.delete("/:id", authenticate, restrict(["doctor"]), deleteDoctor);
 router.get("/profile/me", authenticate, restrict(["doctor"]), getDoctorProfile);
 router.get(
-	"/appointments-list/me",
-	authenticate,
-	restrict(["doctor"]),
-	getDoctorAppointments,
+  "/appointments-list/me",
+  authenticate,
+  restrict(["doctor"]),
+  getDoctorAppointments,
 );
 
+router.post("/bluck", upload.single("file"), bluckDoctorsInfomation);
 export default router;

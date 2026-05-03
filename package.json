@@ -9,8 +9,7 @@
 		"dev": "nodemon index.js",
 		"start": "node index.js",
 		"fix": "biome check . --write",
-		"check": "biome check .",
-		"test": "jest --runInBand"
+		"check": "biome check ."
 	},
 	"dependencies": {
 		"awilix": "^12.0.5",
