@@ -1,16 +1,18 @@
-import { Router } from "express";
-import authRouter from "./auth.js";
+
 import bookingRouter from "./booking.js";
-import doctorRouter from "./doctor.js";
 import reviewRouter from "./review.js";
 import userRouter from "./user.js";
+import AuthRoute from "./auth.js";
+import Controller from "./controller.js";
+import DoctorRoute from "./doctor.js";
 
-const router = Router();
-
-router.use("/auth", authRouter);
-router.use("/user", userRouter);
-router.use("/doctors", doctorRouter);
-router.use("/reviews", reviewRouter);
-router.use("/bookings", bookingRouter);
-
-export default router;
+export default class IndexRoute extends Controller {
+  constructor() {
+    super();
+    this.use("/auth", new AuthRoute().routes);
+    this.use("/user", userRouter);
+    this.use("/doctors", new DoctorRoute().routes);
+    this.use("/reviews", reviewRouter);
+    this.use("/bookings", bookingRouter);
+  }
+}

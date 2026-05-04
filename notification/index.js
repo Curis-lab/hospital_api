@@ -10,6 +10,7 @@ import { Server } from "socket.io";
 
 const events = {
   "appoint:remainder": (data) => {},
+  "appointment:remainder":(data)=>{}
 };
 
 export default function notificationServer(server) {

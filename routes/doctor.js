@@ -1,4 +1,4 @@
-import { Router } from "express";
+
 import {
   bluckDoctorsInfomation,
   deleteDoctor,
@@ -10,23 +10,34 @@ import {
 } from "../controllers/doctorController.js";
 import { authenticate, restrict } from "../middlewares/verify-token.js";
 import reviewRouter from "./review.js";
-import { upload } from "../utils/multer-upload.js";
+import multerMiddleware from "../middlewares/multer-upload.js";
+import Controller from "./controller.js";
 
-const router = Router();
 
-router.use("/:doctorId/reviews", reviewRouter);
 
-router.get("/:id", getSingleDoctor);
-router.get("/", getAllDoctors);
-router.put("/", authenticate, restrict(["doctor"]), updateDoctor);
-router.delete("/:id", authenticate, restrict(["doctor"]), deleteDoctor);
-router.get("/profile/me", authenticate, restrict(["doctor"]), getDoctorProfile);
-router.get(
-  "/appointments-list/me",
-  authenticate,
-  restrict(["doctor"]),
-  getDoctorAppointments,
-);
+export default class DoctorRoute extends Controller {
+  constructor() {
+    super();
+    this.use("/:doctorId/reviews", reviewRouter);
 
-router.post("/bluck", upload.single("file"), bluckDoctorsInfomation);
-export default router;
+    this.get("/:id", getSingleDoctor);
+    this.get("/", getAllDoctors);
+    this.put("/", authenticate, restrict(["doctor"]), updateDoctor);
+    this.delete("/:id", authenticate, restrict(["doctor"]), deleteDoctor);
+    this.get(
+      "/profile/me",
+      authenticate,
+      restrict(["doctor"]),
+      getDoctorProfile,
+    );
+    this.get(
+      "/appointments-list/me",
+      authenticate,
+      restrict(["doctor"]),
+      getDoctorAppointments,
+    );
+
+    this.post("/bluck", multerMiddleware.fileUpload(), bluckDoctorsInfomation);
+  }
+}
+
