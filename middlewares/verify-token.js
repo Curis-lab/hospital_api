@@ -40,4 +40,3 @@ export const restrict = (roles) => async (req, res, next) => {
 	}
 	next();
 };
-

@@ -42,7 +42,6 @@ export const getCheckoutSession = async (req, res) => {
 		const doctorBio = doctor.bio || "Medical consultation service";
 		const doctorPhoto = doctor.photo || "";
 
-
 		const booking = await BookingGateway.createBooking({
 			doctorId: doctor._id, // Changed from doctorId to doctor to match schema
 			patientId: user._id, // Changed from userId to user to match schema

@@ -7,74 +7,74 @@ import mongoose from "mongoose";
 import redis from "redis";
 
 import notificationServer from "./notification/index.js";
-import createScopeContainerMiddleware from "./src/infrastructure/web/middlewares/create-scope-container.middleware.js";
 import IndexRoute from "./routes/index.js";
+import createScopeContainerMiddleware from "./src/infrastructure/web/middlewares/create-scope-container.middleware.js";
 
 dotenv.config();
 
 export const redisClient = redis.createClient({
-  password: `${process.env.REDIS_PASSWORD}`,
-  socket: {
-    host: `${process.env.REDIS_SOCKET_HOST}`,
-    port: 12674,
-  },
+	password: `${process.env.REDIS_PASSWORD}`,
+	socket: {
+		host: `${process.env.REDIS_SOCKET_HOST}`,
+		port: 12674,
+	},
 });
 
 // redisClient.connect(console.log("Redis is connected")).catch(console.err);
 
 const connectDB = async () => {
-  mongoose.set("strictQuery", false);
+	mongoose.set("strictQuery", false);
 
-  try {
-    await mongoose.connect(process.env.MONGO_URL);
-    console.log("Mongodb database is connected.");
-  } catch (err) {
-    console.log("Mongodb database is connection field.", err);
-  }
+	try {
+		await mongoose.connect(process.env.MONGO_URL);
+		console.log("Mongodb database is connected.");
+	} catch (err) {
+		console.log("Mongodb database is connection field.", err);
+	}
 };
 
 export function startHTTPServer(container) {
-  const app = express();
-  const port = process.env.PORT || 8000;
+	const app = express();
+	const port = process.env.PORT || 8000;
 
-  const corsOptions = {
-    origin: ["http://localhost:5173", "https://medibook-jade.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization", "authentication"],
-    credentials: true,
-  };
+	const corsOptions = {
+		origin: ["http://localhost:5173", "https://medibook-jade.vercel.app"],
+		methods: ["GET", "POST", "PUT", "DELETE"],
+		allowedHeaders: ["Content-Type", "Authorization", "authentication"],
+		credentials: true,
+	};
 
-  // app.use(morgan("dev"));
+	// app.use(morgan("dev"));
 
-  app.use(express.json());
-  app.use(cookieParser());
-  app.use(cors(corsOptions));
-  app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept",
-    );
-    next();
-  });
+	app.use(express.json());
+	app.use(cookieParser());
+	app.use(cors(corsOptions));
+	app.use((req, res, next) => {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header(
+			"Access-Control-Allow-Headers",
+			"Origin, X-Requested-With, Content-Type, Accept",
+		);
+		next();
+	});
 
-  app.use(createScopeContainerMiddleware(container));
+	app.use(createScopeContainerMiddleware(container));
 
-  app.use("/api/v1", new IndexRoute().routes);
+	app.use("/api/v1", new IndexRoute().routes);
 
-  app.use((err, req, res, next) => {
-    req;
-    next;
-    return res.status(500).json({
-      error: err.message,
-    });
-  });
+	app.use((err, req, res, next) => {
+		req;
+		next;
+		return res.status(500).json({
+			error: err.message,
+		});
+	});
 
-  const server = http.createServer(app);
-  notificationServer(server);
+	const server = http.createServer(app);
+	notificationServer(server);
 
-  server.listen(port, () => {
-    connectDB();
-    console.log(`Server is lived on port ${port}`);
-  });
+	server.listen(port, () => {
+		connectDB();
+		console.log(`Server is lived on port ${port}`);
+	});
 }

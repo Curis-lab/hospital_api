@@ -35,9 +35,6 @@ export class CSVBulkUploader {
 	}
 
 	async upload(filename) {
-
-
-		
 		return new Promise((resolve, reject) => {
 			const stream = fs.createReadStream(filename);
 			const results = [];
@@ -49,14 +46,14 @@ export class CSVBulkUploader {
 			// doctor.create();
 
 			//slowing chunk by chunk
-			
+
 			stream
 				.pipe(csv())
 				.on("data", async (chunk) => {
 					// batch.push(data);
-					console.log('---');
+					console.log("---");
 					console.log(chunk);
-					console.log('---')
+					console.log("---");
 					//   await UserSchema.create(this.adjustWithSchema(data));
 
 					//chunk by chunk

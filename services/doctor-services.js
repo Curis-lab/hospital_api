@@ -2,12 +2,11 @@ import DoctorSchema from "../models/doctor-schema.js";
 import DoctorRepository from "../repositories/doctor-repository.js";
 import { isEmail, isString } from "../utils/validators.js";
 
-
 export default class DoctorServices {
-	constructor(){
+	constructor() {
 		this.repository = new DoctorRepository();
 	}
-	
+
 	validate(data) {
 		const errors = [];
 		if (!isEmail(data.email)) {
@@ -52,7 +51,15 @@ export default class DoctorServices {
 		const doctor = new DoctorSchema(data);
 		await doctor.save();
 	}
-	async listOfDoctor(){
-		await this.repository.all()
+	doctorInfo(data) {
+		return {
+			name: data.name,
+			ticketPrice: data.ticketPrice,
+		};
+	}
+	async listOfDoctors() {
+		const result = await this.repository.all();
+
+		return result.map((re) => this.doctorInfo(re));
 	}
 }
