@@ -7,7 +7,7 @@ import {
   getDoctorProfile,
   getSingleDoctor,
   updateDoctor,
-} from "../controllers/doctorController.js";
+} from "../controllers/doctor-controller.js";
 import { authenticate, restrict } from "../middlewares/verify-token.js";
 import reviewRouter from "./review.js";
 import multerMiddleware from "../middlewares/multer-upload.js";

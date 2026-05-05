@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
 	createReview,
 	getAllReviews,
-} from "../controllers/reviewController.js";
+} from "../controllers/review-controller.js";
 import { authenticate, restrict } from "../middlewares/verify-token.js";
 
 const router = Router({ mergeParams: true });

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { auth, login, register, test } from "../controllers/authController.js";
+import { auth, login, register, test } from "../controllers/auth-controller.js";
 import multerMiddleware from "../middlewares/multer-upload.js";
 import Controller from "./controller.js";
 

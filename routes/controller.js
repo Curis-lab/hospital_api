@@ -1,6 +1,8 @@
 import { Router } from "express";
 
 export default class Controller {
+  router;
+
   constructor() {
     this.router = Router();
   }
@@ -12,13 +14,15 @@ export default class Controller {
         options.middleware,
         options.handler,
       );
+    } else {
+      this.router[options.method](options.path, options.handler);
     }
-    this.router[options.method](options.path, options.handler);
   }
 
   get(path, handler) {
     this.route({
       method: "get",
+      path,
       handler,
     });
   }
@@ -50,7 +54,7 @@ export default class Controller {
       method: "patch",
       path,
       middleware,
-      handler
+      handler,
     });
   }
   delete(path, handler, middleware) {
@@ -62,7 +66,7 @@ export default class Controller {
     });
   }
   fileUpload() {
-    this.route()
+    this.route();
   }
 
   get routes() {

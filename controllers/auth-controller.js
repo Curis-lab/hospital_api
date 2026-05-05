@@ -22,17 +22,10 @@ export const auth = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  //role should follow enum --> 'patient'|'doctor'
-  // const ROLE = ['patient','doctor'];
-
-  const { email, password, name, role, gender } = req.body;
-
+  const { name, email, password, role, gender } = req.body;
   try {
-    //I need to make more good.
-    const accountAlreadyExists = await new UserServices(role).isMailExist(
-      email,
-    );
-	
+    const accountAlreadyExists = await new UserServices(role).extractUserByMail(email);
+
     if (accountAlreadyExists) {
       res
         .status(400)
@@ -69,8 +62,8 @@ export const register = async (req, res) => {
 
 async function loginController(data) {
   try {
-    const { email, password } = data;
-    const user = await new UserServices().findUserByMail(email);
+    const { email, password, role } = data;
+    const user = await new UserServices(role).extractUserByMail(email);
 
     if (!user) {
       return httpResponseFormat(404, "User not found.");
@@ -87,7 +80,8 @@ async function loginController(data) {
 
     //runtime level, but it flexible, high complexity.
     const token = tokenGenerate(user);
-    const { role, appointments, _id, __v, ...rest } = user._doc;
+    
+    const { appointments, _id, __v, ...rest } = user._doc;
 
     return httpResponseFormat(200, "Successfully logged in.", {
       token,

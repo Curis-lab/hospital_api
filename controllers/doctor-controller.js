@@ -7,6 +7,7 @@ import generateDoctorGateway from "../src/use-cases/generate-doctor/generate-doc
 import missingField from "../utils/check-field.js";
 import UserSchema from "../models/user-schema.js";
 import validateDoctor from "./doctor-controller/validator.js";
+import DoctorServices from "../services/doctor-services.js";
 
 const doctorGateway = new generateDoctorGateway();
 
@@ -108,10 +109,12 @@ async function doctors(search) {
 //sequential
 
 export const getAllDoctors = async (req, res) => {
-  const { search } = req.query;
+  console.log('hello');
+  // const { search } = req.query;
+  // const { code, message, body } = await doctorInteractor(search);
 
-  const { code, message, body } = await doctorInteractor(search);
-  res.status(code).json({ message, body });
+  const doctor = new DoctorServices().listOfDoctor();
+  res.json({ message:doctor});
 };
 
 export const getDoctorProfile = async (req, res) => {

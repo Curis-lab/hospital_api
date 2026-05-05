@@ -6,7 +6,7 @@ import {
 	getSingleUser,
 	getUserProfile,
 	updateUser,
-} from "../controllers/userController.js";
+} from "../controllers/user-controller.js";
 import { authenticate, restrict } from "../middlewares/verify-token.js";
 
 const router = Router();
