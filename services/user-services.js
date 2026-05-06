@@ -1,13 +1,13 @@
 import UserSchema from "../models/user-schema.js";
 import DoctorRepository from "../repositories/doctor-repository.js";
 import PatientRepository from "../repositories/patient-repository.js";
-import generateAuthGateway from "../src/use-cases/generate-auth/generate-auth.gateway.js";
+// import generateAuthGateway from "../src/use-cases/generate-auth/generate-auth.gateway.js";
 import ROLE from "../utils/constant.js";
 
 export default class UserServices {
 	constructor(role = ROLE.PATIENT) {
 		this.role = role;
-		this.model = new generateAuthGateway();
+		this.model = {};
 		this.doctorRepo = new DoctorRepository();
 		this.patientRepos = new PatientRepository();
 	}

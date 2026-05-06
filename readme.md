@@ -1,7 +1,2 @@
-Notice for Depolyment
+## ♻️ hospital management application ♻️
 
-### following this rule
-give file just like this --> booking-schema.js
-
-
-### Garentee with Testing

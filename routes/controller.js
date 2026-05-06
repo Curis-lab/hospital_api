@@ -66,7 +66,7 @@ export default class Controller {
 		});
 	}
 	fileUpload() {
-		this.route();
+		//imagekit
 	}
 
 	get routes() {

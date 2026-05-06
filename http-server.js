@@ -8,7 +8,6 @@ import redis from "redis";
 
 import notificationServer from "./notification/index.js";
 import IndexRoute from "./routes/index.js";
-import createScopeContainerMiddleware from "./src/infrastructure/web/middlewares/create-scope-container.middleware.js";
 
 dotenv.config();
 
@@ -58,8 +57,6 @@ export function startHTTPServer(container) {
 		next();
 	});
 
-	app.use(createScopeContainerMiddleware(container));
-
 	app.use("/api/v1", new IndexRoute().routes);
 
 	app.use((err, req, res, next) => {
@@ -73,8 +70,10 @@ export function startHTTPServer(container) {
 	const server = http.createServer(app);
 	notificationServer(server);
 
-	server.listen(port, () => {
+	function serverCb() {
 		connectDB();
 		console.log(`Server is lived on port ${port}`);
-	});
+	}
+
+	server.listen(port, serverCb);
 }

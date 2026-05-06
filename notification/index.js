@@ -1,12 +1,5 @@
-//purpose:
-
 import fs from "fs";
 import { Server } from "socket.io";
-
-/**
- * Attach Socket.IO to the existing HTTP server.
- * @param {import("http").Server} server
- */
 
 const events = {
 	"appoint:remainder": (data) => {},
@@ -36,12 +29,12 @@ export default function notificationServer(server) {
 		socket.on("send:noti", (data) => {
 			const message = JSON.parse(data);
 			if (message.type === "notification") {
-				socket.emit("recv:notif", {
+				socket.send("recv:notif", {
 					type: "",
 					message: "",
 				});
 			} else {
-				socket.emit("recv:notif", {
+				socket.send("recv:notif", {
 					type: "",
 					message: "",
 				});

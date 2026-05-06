@@ -1,9 +1,7 @@
 import Stripe from "stripe";
 import Doctor from "../models/doctor-schema.js";
 import User from "../models/user-schema.js";
-import { MixBookingRepository } from "../src/adapters/common/repositories/book.rep.js";
-import { MixDoctorRepository } from "../src/adapters/common/repositories/doctor.rep.js";
-import { MixPatientRepository } from "../src/adapters/common/repositories/patient.rep.js";
+
 import MixUnitOfWorkService from "../src/adapters/common/services/MixUnitOfWorkServices.js";
 
 const generateBookingGateways = MixUnitOfWorkService(
@@ -21,7 +19,11 @@ export const getCheckoutSession = async (req, res) => {
 				message: "Please provide appointment date and time",
 			});
 		}
-		const doctor = await BookingGateway.getDoctorById(req.params.doctorId);
+        const doctorServices = new doctorServices();
+        const patientServices = new patientServices();
+        
+        
+		const doctor = await doctorServices.doctorInfo(req.params.doctorId);
 		const user = await BookingGateway.findPatientById(req.userId);
 
 		//I need to know what time is patient select and send
