@@ -1,11 +1,11 @@
-import {
-	deleteUser,
-	getAllUser,
-	getMyAppointments,
-	getSingleUser,
-	getUserProfile,
-	updateUser,
-} from "../controllers/user-controller.js";
+// import {
+// 	deleteUser,
+// 	getAllUser,
+// 	getMyAppointments,
+// 	getSingleUser,
+// 	getUserProfile,
+// 	updateUser,
+// } from "../controllers/user-controller.js";
 import { authenticate, restrict } from "../middlewares/verify-token.js";
 import Controller from "./controller.js";
 

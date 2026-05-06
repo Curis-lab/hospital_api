@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-export default addressSchema = new mongoose.Schema({
-    street: String,
-    city:String
-})
+const addressSchema = new mongoose.Schema({
+  street: String,
+  city: String,
+});
+
+export default addressSchema;
