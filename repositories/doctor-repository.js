@@ -111,7 +111,7 @@ export default class DoctorRepository {
   }
 
   _response(data) {
-    // change the logic and make some change. 
+    // change the logic and make some change.
     return {
       id: data._id,
       name: data.name,
@@ -157,11 +157,13 @@ export default class DoctorRepository {
     const results = await DoctorSchema.find();
     return results.map((result) => this._response(result));
   }
-  
+
   async update(id, data) {
-    await DoctorSchema.findByIdAndUpdate(id, {
+    let result;
+    result = await DoctorSchema.findByIdAndUpdate(id, {
       ...data,
     });
+    return result;
   }
 
   async insertMany(data) {
