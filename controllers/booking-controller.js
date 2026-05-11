@@ -24,3 +24,18 @@ export const getCheckoutSession = async (req, res) => {
       .json({ success: false, message: "Error creating checkout session." });
   }
 };
+
+//http://localhost:8000/patient/appointment/:booking_id
+export const createAppointment = async(req, res)=>{
+  try{
+    //select an appointment
+    const bookingId = req.params.booking_id;    
+  }
+  catch(err){
+    res.status(500).json({
+      success:false,
+      message:'failed on create appointment',
+      errors: err.message
+    })
+  }
+}

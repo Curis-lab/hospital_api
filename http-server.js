@@ -5,12 +5,14 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import redis from "redis";
-
-import notificationServer from "./notification/index.js";
-import IndexRoute from "./routes/index.js";
-import router from "./routes/index.js";
 import session from "express-session";
 import passport from "passport";
+import { Server } from "socket.io";
+
+import notificationServer from "./notification/index.js";
+import router from "./routes/index.js";
+
+dotenv.config();
 
 const connectDB = async () => {
   mongoose.set("strictQuery", false);
@@ -19,7 +21,7 @@ const connectDB = async () => {
     await mongoose.connect(process.env.MONGO_URL);
     console.log("Mongodb database is connected.");
   } catch (err) {
-    console.log("Mongodb database is connection field.", err);
+    console.log("Mongodb database connection failed.", err);
   }
 };
 
@@ -27,7 +29,34 @@ export async function startHTTPServer(container) {
   const app = express();
   const port = process.env.PORT || 8000;
 
+  // create http server
+  const server = http.createServer(app);
+
+  // attach socket.io
+  const io = new Server(server, {
+    cors: {
+      origin: "*",
+    },
+  });
+
+  // this is final 
+  
+  io.on("connection", (socket) => {
+    console.log("user connected");
+    console.log("User connected:", socket.id);
+
+    socket.on("send-notification", (data) => {
+      console.log("data", data);
+      io.emit("receive-notification", data);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("User disconnected:", socket.id);
+    });
+  });
+
   app.use(express.json());
+
   app.use(
     session({
       secret: "secret-key",
@@ -61,7 +90,8 @@ export async function startHTTPServer(container) {
   try {
     await connectDB();
 
-    app.listen(port, () => {
+    // IMPORTANT
+    server.listen(port, () => {
       console.log(`Server is live on port ${port} 🟢`);
     });
   } catch (err) {
