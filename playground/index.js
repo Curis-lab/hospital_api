@@ -1,22 +1,16 @@
-function readFileData(filename, options, cb) {
-	try {
-		if (!filename) {
-			return cb("No filename", null);
-		}
-		//do this
-		const data = JSON.parse("{ bad json }");
+import fs from "node:fs";
 
-		return cb(null, data);
-	} catch (err) {
-		return cb(err, null);
-	}
+function clearAllRelativeWithCurrentFile(filename) {
+  fs.readdir("../uploads", (err, files) => {
+    if (err) console.log(err);
+
+    for (let i = 0; i < files.length; i++) {
+      const regex = new RegExp(`\\d+-${filename}$`, "i");
+      if (regex.test(files[i])) {
+        fs.unlink(`../uploads/${files[i]}`, (err, data) => {
+          if (err) console.log(err);
+        });
+      }
+    }
+  });
 }
-
-readFileData("file.txt", (err, data) => {
-	if (err) {
-		console.log(err);
-		return;
-	}
-
-	console.log("DATA:", data);
-});

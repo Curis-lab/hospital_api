@@ -8,72 +8,63 @@ import redis from "redis";
 
 import notificationServer from "./notification/index.js";
 import IndexRoute from "./routes/index.js";
-
-dotenv.config();
-
-export const redisClient = redis.createClient({
-	password: `${process.env.REDIS_PASSWORD}`,
-	socket: {
-		host: `${process.env.REDIS_SOCKET_HOST}`,
-		port: 12674,
-	},
-});
-
-// redisClient.connect(console.log("Redis is connected")).catch(console.err);
+import router from "./routes/index.js";
+import session from "express-session";
+import passport from "passport";
 
 const connectDB = async () => {
-	mongoose.set("strictQuery", false);
+  mongoose.set("strictQuery", false);
 
-	try {
-		await mongoose.connect(process.env.MONGO_URL);
-		console.log("Mongodb database is connected.");
-	} catch (err) {
-		console.log("Mongodb database is connection field.", err);
-	}
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log("Mongodb database is connected.");
+  } catch (err) {
+    console.log("Mongodb database is connection field.", err);
+  }
 };
 
-export function startHTTPServer(container) {
-	const app = express();
-	const port = process.env.PORT || 8000;
+export async function startHTTPServer(container) {
+  const app = express();
+  const port = process.env.PORT || 8000;
 
-	const corsOptions = {
-		origin: ["http://localhost:5173", "https://medibook-jade.vercel.app"],
-		methods: ["GET", "POST", "PUT", "DELETE"],
-		allowedHeaders: ["Content-Type", "Authorization", "authentication"],
-		credentials: true,
-	};
+  app.use(express.json());
+  app.use(
+    session({
+      secret: "secret-key",
+      resave: false,
+      saveUninitialized: false,
+    }),
+  );
 
-	// app.use(morgan("dev"));
+  app.use(passport.initialize());
+  app.use(passport.session());
 
-	app.use(express.json());
-	app.use(cookieParser());
-	app.use(cors(corsOptions));
-	app.use((req, res, next) => {
-		res.header("Access-Control-Allow-Origin", "*");
-		res.header(
-			"Access-Control-Allow-Headers",
-			"Origin, X-Requested-With, Content-Type, Accept",
-		);
-		next();
-	});
+  app.use(cookieParser());
 
-	app.use("/api/v1", new IndexRoute().routes);
+  const corsOptions = {
+    origin: ["http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization", "authentication"],
+    credentials: true,
+  };
 
-	app.use((err, req, res, next) => {
-		req;
-		next;
-		return res.status(500).json({
-			error: err.message,
-		});
-	});
+  app.use(cors(corsOptions));
 
-	const server = http.createServer(app);
-	notificationServer(server);
+  app.use("/api/v1", router);
 
-	function serverCb() {
-		connectDB();
-		console.log(`Server is lived on port ${port}`);
-	}
+  app.use((err, req, res, next) => {
+    return res.status(500).json({
+      error: err.message,
+    });
+  });
 
-	server.listen(port, serverCb);
+  try {
+    await connectDB();
+
+    app.listen(port, () => {
+      console.log(`Server is live on port ${port} 🟢`);
+    });
+  } catch (err) {
+    console.log("Server startup failed:", err);
+  }
 }

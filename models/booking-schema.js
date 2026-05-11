@@ -7,9 +7,9 @@ const bookingSchema = new mongoose.Schema(
       ref: "Doctor",
       required: true,
     },
-    user: {
+    patient: {
       type: mongoose.Types.ObjectId,
-      ref: "User",
+      ref: "Patient",
       required: true,
     },
     ticketPrice: { type: String, required: true },
@@ -39,14 +39,3 @@ bookingSchema.pre("", function (next) {
 });
 
 export default mongoose.model("Booking", bookingSchema);
-
-export function mixBookingRepos(base) {
-  return class extends base {
-    constructor() {
-      super();
-    }
-    async findBookingById() {}
-    insertBookingById() {}
-    deleteBookingById() {}
-  };
-}

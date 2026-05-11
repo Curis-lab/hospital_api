@@ -1,115 +1,90 @@
+import z from "zod";
 import dotenv from "dotenv";
-import {
-  decrpytPwd,
-  isCorrectPassword,
-  tokenGenerate,
-} from "../services/auth-services.js";
 import DoctorServices from "../services/doctor-services.js";
 import UserServices from "../services/user-services.js";
 import httpResponseFormat from "../utils/http-response-format.js";
 import ImageKitServices from "../services/imagekit-services.js";
+import PatientServices from "../services/patient-services.js";
 
 dotenv.config();
 
-export const auth = async (req, res) => {
-  const { token, expire, signature } = imagekit.getAuthenticationParameters();
-  res.send({
-    token,
-    expire,
-    signature,
-    publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-  });
-};
+const registerSchema = z.object({
+  name: z.string().min(1, "Name is required"),
 
-export const register = async (req, res) => {
-  const { name, email, password, role, gender } = req.body;
+  email: z.email("Invalid email"),
+
+  password: z.string().min(6, "Password must be at least 6 characters"),
+
+  gender: z.enum(["male", "female"]),
+});
+
+export const registerPatient = async (req, res) => {
   try {
-    const accountAlreadyExists = await new UserServices(role).extractUserByMail(
-      email,
-    );
+    const result = registerSchema.safeParse(req.body);
 
-    if (accountAlreadyExists) {
-      res
-        .status(400)
-        .json({ message: "Existing Email. Please change another." });
-      return;
+    if (!result.success) {
+      const formattedErrors = {};
+      for (const [field, messages] of Object.entries(
+        result.error.flatten().fieldErrors,
+      )) {
+        formattedErrors[field] = messages?.[0];
+      }
+
+      return res.status(400).json({
+        success: result.success,
+        message: "Invalid input.",
+        errors: formattedErrors,
+      });
     }
 
-    const hashedPassword = await decrpytPwd(password);
-    let uploadedImage = null;
+    const { name, email, password, gender } = (patientInfo = req.body);
+    const patientServices = new PatientServices();
 
-    if (req.file) {
-      const imagekit = new ImageKitServices();
-      uploadedImage = await imagekit.uploadImage(req.file);
+    const existedPatient = await patientServices.hasPatientByMail(email);
+
+    if (existedPatient) {
+      return res.status(400).json({
+        success: false,
+        message: "Existing Email. Please change another.",
+        errors: "Existing email, please change another.",
+      });
     }
 
-    const userInfo = {
-      name,
-      email,
-      password: hashedPassword,
-      photo: uploadedImage,
-      gender,
-      role,
-    };
-
-    new UserServices().createUser(userInfo);
+    const patient = await patientServices.register(patientInfo);
 
     res.status(200).json({
-      message: "Image upload successfully",
+      success: true,
+      message: "patient registered successfully.",
+      body: {
+        token: "",
+        ...patient,
+      },
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Internal server error!" });
+    res.status(500).json({ message: `errors: ${err.message}` });
   }
 };
 
-async function loginController(data) {
+export async function patientLogin(req, res) {
   try {
-    const { email, password, role } = data;
-    const user = await new UserServices(role).extractUserByMail(email);
-
-    if (!user) {
-      return httpResponseFormat(404, "User not found.");
-    }
-
-    const hashed = user.password;
-    if (!hashed) {
-      return httpResponseFormat(400, "Password is not exist");
-    }
-
-    if (!isCorrectPassword(password, hashed)) {
-      return httpResponseFormat(400, "Password is not correct.");
-    }
-
-    //runtime level, but it flexible, high complexity.
-    const token = tokenGenerate(user);
-
-    const { appointments, _id, __v, ...rest } = user._doc;
-
-    return httpResponseFormat(200, "Successfully logged in.", {
-      token,
-      ...rest,
-      role,
+    res.status(200).json({
+      success: true,
+      message: "logged in successfully",
     });
   } catch (err) {
-    return httpResponseFormat(500, "Failed to login.");
+    res.status(200).json({ message: "patientLoginController" });
   }
 }
-/**
- *
- * @param {email:string, password:string} req
- * @param {*} res
- */
-export const login = async (req, res) => {
-  const { code, message, body } = await loginController(req.body);
-  res.status(code).json({ message, body });
-};
 
-/**
- *
- * @param {} req
- * @param {*} res
- */
+export async function patientLogout(req, res) {
+  req.logout(() => {
+    res.json({
+      success: true,
+      message: "logout successfully",
+    });
+  });
+}
+
 export const test = async (req, res) => {
   try {
     const doctor = new DoctorServices();

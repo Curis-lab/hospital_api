@@ -1,51 +1,51 @@
-doctor_id,first_name,last_name,specialization,phone_number,years_experience,hospital_branch,email,image_url
-D001,David,Taylor,Dermatology,8322010158,17,Westside Clinic,dr.david.taylor@hospital.com,https://ui-avatars.com/api/?name=David+Taylor
-D002,Jane,Davis,Pediatrics,9004382050,24,Eastside Clinic,dr.jane.davis@hospital.com,https://ui-avatars.com/api/?name=Jane+Davis
-D003,Jane,Smith,Pediatrics,8737740598,19,Eastside Clinic,dr.jane.smith@hospital.com,https://ui-avatars.com/api/?name=Jane+Smith
-D004,David,Jones,Pediatrics,6594221991,28,Central Hospital,dr.david.jones@hospital.com,https://ui-avatars.com/api/?name=David+Jones
-D005,Sarah,Taylor,Dermatology,9118538547,26,Central Hospital,dr.sarah.taylor@hospital.com,https://ui-avatars.com/api/?name=Sarah+Taylor
-D006,Alex,Davis,Pediatrics,6570137231,23,Central Hospital,dr.alex.davis@hospital.com,https://ui-avatars.com/api/?name=Alex+Davis
-D007,Robert,Davis,Oncology,8217493115,26,Westside Clinic,dr.robert.davis@hospital.com,https://ui-avatars.com/api/?name=Robert+Davis
-D008,Linda,Brown,Dermatology,9069162601,5,Westside Clinic,dr.linda.brown@hospital.com,https://ui-avatars.com/api/?name=Linda+Brown
-D009,Sarah,Smith,Pediatrics,7387087517,26,Central Hospital,dr.sarah.smith@hospital.com,https://ui-avatars.com/api/?name=Sarah+Smith
-D010,Linda,Wilson,Oncology,6176383634,21,Eastside Clinic,dr.linda.wilson@hospital.com,https://ui-avatars.com/api/?name=Linda+Wilson
-D011,Michael,Clark,Cardiology,8456721345,12,Central Hospital,dr.michael.clark@hospital.com,https://ui-avatars.com/api/?name=Michael+Clark
-D012,Emily,Hall,Neurology,8345678901,15,Westside Clinic,dr.emily.hall@hospital.com,https://ui-avatars.com/api/?name=Emily+Hall
-D013,Daniel,Allen,Orthopedics,9123456780,20,Eastside Clinic,dr.daniel.allen@hospital.com,https://ui-avatars.com/api/?name=Daniel+Allen
-D014,Olivia,Young,Gynecology,9234567812,18,Central Hospital,dr.olivia.young@hospital.com,https://ui-avatars.com/api/?name=Olivia+Young
-D015,James,Hernandez,Cardiology,9345678123,10,Westside Clinic,dr.james.hernandez@hospital.com,https://ui-avatars.com/api/?name=James+Hernandez
-D016,Emma,King,Neurology,9456781234,8,Eastside Clinic,dr.emma.king@hospital.com,https://ui-avatars.com/api/?name=Emma+King
-D017,William,Wright,Orthopedics,9567812345,22,Central Hospital,dr.william.wright@hospital.com,https://ui-avatars.com/api/?name=William+Wright
-D018,Ava,Lopez,Gynecology,9678123456,14,Westside Clinic,dr.ava.lopez@hospital.com,https://ui-avatars.com/api/?name=Ava+Lopez
-D019,Joseph,Hill,Cardiology,9781234567,16,Eastside Clinic,dr.joseph.hill@hospital.com,https://ui-avatars.com/api/?name=Joseph+Hill
-D020,Isabella,Scott,Neurology,9892345678,9,Central Hospital,dr.isabella.scott@hospital.com,https://ui-avatars.com/api/?name=Isabella+Scott
-D021,Charles,Green,Orthopedics,9903456789,25,Westside Clinic,dr.charles.green@hospital.com,https://ui-avatars.com/api/?name=Charles+Green
-D022,Mia,Adams,Gynecology,9014567890,11,Eastside Clinic,dr.mia.adams@hospital.com,https://ui-avatars.com/api/?name=Mia+Adams
-D023,Thomas,Baker,Cardiology,9125678901,13,Central Hospital,dr.thomas.baker@hospital.com,https://ui-avatars.com/api/?name=Thomas+Baker
-D024,Sophia,Nelson,Neurology,9236789012,7,Westside Clinic,dr.sophia.nelson@hospital.com,https://ui-avatars.com/api/?name=Sophia+Nelson
-D025,Christopher,Carter,Orthopedics,9347890123,19,Eastside Clinic,dr.christopher.carter@hospital.com,https://ui-avatars.com/api/?name=Christopher+Carter
-D026,Charlotte,Mitchell,Gynecology,9458901234,21,Central Hospital,dr.charlotte.mitchell@hospital.com,https://ui-avatars.com/api/?name=Charlotte+Mitchell
-D027,Matthew,Perez,Cardiology,9569012345,17,Westside Clinic,dr.matthew.perez@hospital.com,https://ui-avatars.com/api/?name=Matthew+Perez
-D028,Amelia,Roberts,Neurology,9670123456,6,Eastside Clinic,dr.amelia.roberts@hospital.com,https://ui-avatars.com/api/?name=Amelia+Roberts
-D029,Anthony,Turner,Orthopedics,9781234501,23,Central Hospital,dr.anthony.turner@hospital.com,https://ui-avatars.com/api/?name=Anthony+Turner
-D030,Harper,Phillips,Gynecology,9892345612,12,Westside Clinic,dr.harper.phillips@hospital.com,https://ui-avatars.com/api/?name=Harper+Phillips
-D031,Mark,Campbell,Cardiology,9903456723,18,Eastside Clinic,dr.mark.campbell@hospital.com,https://ui-avatars.com/api/?name=Mark+Campbell
-D032,Evelyn,Parker,Neurology,9014567834,10,Central Hospital,dr.evelyn.parker@hospital.com,https://ui-avatars.com/api/?name=Evelyn+Parker
-D033,Donald,Evans,Orthopedics,9125678945,27,Westside Clinic,dr.donald.evans@hospital.com,https://ui-avatars.com/api/?name=Donald+Evans
-D034,Abigail,Edwards,Gynecology,9236789056,14,Eastside Clinic,dr.abigail.edwards@hospital.com,https://ui-avatars.com/api/?name=Abigail+Edwards
-D035,Steven,Collins,Cardiology,9347890167,16,Central Hospital,dr.steven.collins@hospital.com,https://ui-avatars.com/api/?name=Steven+Collins
-D036,Emily,Stewart,Neurology,9458901278,9,Westside Clinic,dr.emily.stewart@hospital.com,https://ui-avatars.com/api/?name=Emily+Stewart
-D037,Paul,Sanchez,Orthopedics,9569012389,20,Eastside Clinic,dr.paul.sanchez@hospital.com,https://ui-avatars.com/api/?name=Paul+Sanchez
-D038,Elizabeth,Morris,Gynecology,9670123490,11,Central Hospital,dr.elizabeth.morris@hospital.com,https://ui-avatars.com/api/?name=Elizabeth+Morris
-D039,Andrew,Rogers,Cardiology,9781234512,15,Westside Clinic,dr.andrew.rogers@hospital.com,https://ui-avatars.com/api/?name=Andrew+Rogers
-D040,Victoria,Reed,Neurology,9892345623,8,Eastside Clinic,dr.victoria.reed@hospital.com,https://ui-avatars.com/api/?name=Victoria+Reed
-D041,Joshua,Cook,Orthopedics,9903456734,24,Central Hospital,dr.joshua.cook@hospital.com,https://ui-avatars.com/api/?name=Joshua+Cook
-D042,Madison,Morgan,Gynecology,9014567845,13,Westside Clinic,dr.madison.morgan@hospital.com,https://ui-avatars.com/api/?name=Madison+Morgan
-D043,Kevin,Bell,Cardiology,9125678956,19,Eastside Clinic,dr.kevin.bell@hospital.com,https://ui-avatars.com/api/?name=Kevin+Bell
-D044,Scarlett,Murphy,Neurology,9236789067,7,Central Hospital,dr.scarlett.murphy@hospital.com,https://ui-avatars.com/api/?name=Scarlett+Murphy
-D045,Brian,Bailey,Orthopedics,9347890178,21,Westside Clinic,dr.brian.bailey@hospital.com,https://ui-avatars.com/api/?name=Brian+Bailey
-D046,Grace,Rivera,Gynecology,9458901289,12,Eastside Clinic,dr.grace.rivera@hospital.com,https://ui-avatars.com/api/?name=Grace+Rivera
-D047,George,Cooper,Cardiology,9569012390,18,Central Hospital,dr.george.cooper@hospital.com,https://ui-avatars.com/api/?name=George+Cooper
-D048,Chloe,Richardson,Neurology,9670123401,9,Westside Clinic,dr.chloe.richardson@hospital.com,https://ui-avatars.com/api/?name=Chloe+Richardson
-D049,Edward,Cox,Orthopedics,9781234523,26,Eastside Clinic,dr.edward.cox@hospital.com,https://ui-avatars.com/api/?name=Edward+Cox
-D050,Lily,Howard,Gynecology,9892345634,15,Central Hospital,dr.lily.howard@hospital.com,https://ui-avatars.com/api/?name=Lily+Howard
+email,password,name,phone,photo,ticketPrice,role,specialization,qualifications,experiences,bio,about,timeSlots,averageRating,totalRating,isApproved
+doctor1@gmail.com,password123,Dr. Aung Kyaw,959111111001,doctor1.jpg,30000,doctor,Cardiology,"MBBS|MD Cardiology","Yangon General Hospital 5 years","Heart specialist","Experienced heart specialist","9AM-12PM",4.5,120,approved
+doctor2@gmail.com,password123,Dr. Su Mon,959111111002,doctor2.jpg,25000,doctor,Dermatology,"MBBS|Skin Care","Mandalay Hospital 4 years","Skin expert","Dermatology consultant","1PM-4PM",4.2,80,approved
+doctor3@gmail.com,password123,Dr. Min Thu,959111111003,doctor3.jpg,35000,doctor,Neurology,"MBBS|Neurology","Asia Royal 6 years","Brain specialist","Neurology consultant","10AM-2PM",4.7,140,approved
+doctor4@gmail.com,password123,Dr. Hnin Ei,959111111004,doctor4.jpg,20000,doctor,Pediatrics,"MBBS|Child Health","Children Hospital 3 years","Child specialist","Pediatric doctor","8AM-11AM",4.1,60,pending
+doctor5@gmail.com,password123,Dr. Zaw Lin,959111111005,doctor5.jpg,28000,doctor,Orthopedics,"MBBS|Orthopedic","SSC Hospital 7 years","Bone specialist","Orthopedic surgeon","3PM-6PM",4.6,110,approved
+doctor6@gmail.com,password123,Dr. Thida Win,959111111006,doctor6.jpg,22000,doctor,Gynecology,"MBBS|OG","Women Hospital 5 years","Women care","Gynecology consultant","9AM-1PM",4.3,90,approved
+doctor7@gmail.com,password123,Dr. Nay Aung,959111111007,doctor7.jpg,26000,doctor,ENT,"MBBS|ENT","ENT Clinic 4 years","ENT expert","Ear nose throat doctor","11AM-2PM",4.0,50,approved
+doctor8@gmail.com,password123,Dr. Ei Phyu,959111111008,doctor8.jpg,24000,doctor,Ophthalmology,"MBBS|Eye","Vision Center 5 years","Eye specialist","Eye care doctor","2PM-5PM",4.4,100,approved
+doctor9@gmail.com,password123,Dr. Kaung Myat,959111111009,doctor9.jpg,32000,doctor,Urology,"MBBS|Urology","City Hospital 6 years","Kidney specialist","Urology consultant","8AM-12PM",4.5,95,pending
+doctor10@gmail.com,password123,Dr. Mya Sandar,959111111010,doctor10.jpg,21000,doctor,Psychiatry,"MBBS|Psychiatry","Mental Center 3 years","Mental health","Psychiatrist","1PM-3PM",4.2,70,approved
+doctor11@gmail.com,password123,Dr. Hein Zaw,959111111011,doctor11.jpg,27000,doctor,Dentistry,"BDS","Smile Clinic 5 years","Dental expert","Dentist","10AM-1PM",4.3,88,approved
+doctor12@gmail.com,password123,Dr. Khin Lay,959111111012,doctor12.jpg,29000,doctor,Cardiology,"MBBS|MD","General Hospital 8 years","Heart care","Senior cardiologist","9AM-2PM",4.8,160,approved
+doctor13@gmail.com,password123,Dr. Phyo Wai,959111111013,doctor13.jpg,23000,doctor,Neurology,"MBBS|Neuro","Asia Hospital 2 years","Brain care","Junior neurologist","2PM-6PM",4.1,44,pending
+doctor14@gmail.com,password123,Dr. Hla Myint,959111111014,doctor14.jpg,33000,doctor,Surgery,"MBBS|MS","Military Hospital 9 years","General surgeon","Experienced surgeon","8AM-1PM",4.7,170,approved
+doctor15@gmail.com,password123,Dr. Cherry Moe,959111111015,doctor15.jpg,26000,doctor,Oncology,"MBBS|Cancer","Cancer Center 6 years","Cancer care","Oncology consultant","12PM-4PM",4.5,102,approved
+doctor16@gmail.com,password123,Dr. Ye Lin,959111111016,doctor16.jpg,20000,doctor,ENT,"MBBS|ENT","ENT Center 2 years","ENT support","ENT doctor","9AM-12PM",4.0,41,pending
+doctor17@gmail.com,password123,Dr. Nilar Tun,959111111017,doctor17.jpg,34000,doctor,Cardiology,"MBBS|Cardio","Heart Center 10 years","Senior specialist","Heart consultant","1PM-5PM",4.9,220,approved
+doctor18@gmail.com,password123,Dr. Aye Aye,959111111018,doctor18.jpg,22000,doctor,Pediatrics,"MBBS|Child","Kids Clinic 4 years","Children care","Pediatric consultant","8AM-10AM",4.2,67,approved
+doctor19@gmail.com,password123,Dr. Sai Lin,959111111019,doctor19.jpg,25000,doctor,Dermatology,"MBBS|Skin","Beauty Clinic 5 years","Skin treatment","Dermatologist","3PM-6PM",4.4,90,approved
+doctor20@gmail.com,password123,Dr. Moe Thandar,959111111020,doctor20.jpg,31000,doctor,Gynecology,"MBBS|OG","Women Care 7 years","Mother care","Gynecologist","9AM-1PM",4.6,130,approved
+doctor21@gmail.com,password123,Dr. Tun Tun,959111111021,doctor21.jpg,30000,doctor,Urology,"MBBS|Urology","Specialist Center 8 years","Kidney expert","Urologist","10AM-2PM",4.7,145,approved
+doctor22@gmail.com,password123,Dr. Win Ei,959111111022,doctor22.jpg,28000,doctor,Dentistry,"BDS","Dental Care 6 years","Smile specialist","Dentist","2PM-5PM",4.5,111,pending
+doctor23@gmail.com,password123,Dr. Lin Htet,959111111023,doctor23.jpg,26000,doctor,Ophthalmology,"MBBS|Eye","Vision Hospital 4 years","Eye treatment","Eye doctor","8AM-11AM",4.3,77,approved
+doctor24@gmail.com,password123,Dr. Su Su,959111111024,doctor24.jpg,21000,doctor,Psychiatry,"MBBS|Mental","Mind Center 2 years","Mental support","Psychiatrist","1PM-4PM",4.0,52,pending
+doctor25@gmail.com,password123,Dr. Kyaw Zin,959111111025,doctor25.jpg,36000,doctor,Surgery,"MBBS|MS","Yangon Hospital 12 years","Expert surgeon","Senior surgeon","9AM-3PM",4.9,240,approved
+doctor26@gmail.com,password123,Dr. Htet Htet,959111111026,doctor26.jpg,24000,doctor,Orthopedics,"MBBS|Bone","Bone Care 3 years","Bone treatment","Orthopedic doctor","10AM-1PM",4.2,64,approved
+doctor27@gmail.com,password123,Dr. Aung Min,959111111027,doctor27.jpg,29000,doctor,Cardiology,"MBBS|Heart","Cardio Center 7 years","Heart care","Cardiology specialist","11AM-3PM",4.6,134,approved
+doctor28@gmail.com,password123,Dr. Ei Mon,959111111028,doctor28.jpg,25000,doctor,ENT,"MBBS|ENT","ENT Hospital 5 years","ENT care","ENT consultant","2PM-6PM",4.4,98,approved
+doctor29@gmail.com,password123,Dr. Than Win,959111111029,doctor29.jpg,27000,doctor,Dermatology,"MBBS|Skin","Skin Care 6 years","Skin expert","Senior dermatologist","8AM-12PM",4.5,101,pending
+doctor30@gmail.com,password123,Dr. May Thu,959111111030,doctor30.jpg,23000,doctor,Pediatrics,"MBBS|Child","Child Center 3 years","Children doctor","Pediatrician","1PM-4PM",4.1,55,approved
+doctor31@gmail.com,password123,Dr. Myo Zaw,959111111031,doctor31.jpg,32000,doctor,Neurology,"MBBS|Brain","Neuro Center 9 years","Brain surgery","Neurologist","9AM-2PM",4.8,180,approved
+doctor32@gmail.com,password123,Dr. Yin Yin,959111111032,doctor32.jpg,21000,doctor,Ophthalmology,"MBBS|Eye","Eye Care 2 years","Vision care","Eye consultant","10AM-12PM",4.0,48,pending
+doctor33@gmail.com,password123,Dr. Soe Moe,959111111033,doctor33.jpg,35000,doctor,Oncology,"MBBS|Cancer","Cancer Hospital 11 years","Cancer specialist","Oncologist","1PM-5PM",4.9,260,approved
+doctor34@gmail.com,password123,Dr. Pwint Phyu,959111111034,doctor34.jpg,26000,doctor,Gynecology,"MBBS|OG","Women Clinic 5 years","Women health","Gynecology doctor","8AM-11AM",4.3,85,approved
+doctor35@gmail.com,password123,Dr. Htun Lin,959111111035,doctor35.jpg,30000,doctor,Urology,"MBBS|Kidney","Kidney Center 8 years","Kidney doctor","Urologist","2PM-6PM",4.7,155,approved
+doctor36@gmail.com,password123,Dr. Mya Mya,959111111036,doctor36.jpg,24000,doctor,Psychiatry,"MBBS|Mental","Mental Care 4 years","Mind treatment","Psychiatrist","9AM-12PM",4.2,71,pending
+doctor37@gmail.com,password123,Dr. Ko Ko,959111111037,doctor37.jpg,28000,doctor,Dentistry,"BDS","Smile Dental 7 years","Dental surgery","Dentist","1PM-3PM",4.5,120,approved
+doctor38@gmail.com,password123,Dr. Nu Nu,959111111038,doctor38.jpg,25000,doctor,Orthopedics,"MBBS|Ortho","Bone Hospital 6 years","Joint treatment","Orthopedic specialist","10AM-1PM",4.4,93,approved
+doctor39@gmail.com,password123,Dr. Thant Zin,959111111039,doctor39.jpg,33000,doctor,Surgery,"MBBS|MS","Surgery Center 10 years","Operation specialist","General surgeon","8AM-2PM",4.8,210,approved
+doctor40@gmail.com,password123,Dr. Ei Ei,959111111040,doctor40.jpg,22000,doctor,ENT,"MBBS|ENT","ENT Clinic 3 years","ENT treatment","ENT doctor","3PM-6PM",4.1,58,pending
+doctor41@gmail.com,password123,Dr. Min Min,959111111041,doctor41.jpg,31000,doctor,Cardiology,"MBBS|Cardio","Heart Hospital 9 years","Heart consultant","Cardiologist","9AM-1PM",4.7,172,approved
+doctor42@gmail.com,password123,Dr. Cherry Win,959111111042,doctor42.jpg,23000,doctor,Pediatrics,"MBBS|Child","Kids Care 4 years","Children support","Pediatrician","2PM-5PM",4.2,63,approved
+doctor43@gmail.com,password123,Dr. Aye Chan,959111111043,doctor43.jpg,27000,doctor,Dermatology,"MBBS|Skin","Beauty Hospital 5 years","Acne specialist","Dermatologist","10AM-2PM",4.5,109,approved
+doctor44@gmail.com,password123,Dr. Hnin Pwint,959111111044,doctor44.jpg,29000,doctor,Ophthalmology,"MBBS|Eye","Eye Specialist 6 years","Eye operation","Eye surgeon","1PM-4PM",4.6,119,approved
+doctor45@gmail.com,password123,Dr. Lin Lin,959111111045,doctor45.jpg,34000,doctor,Neurology,"MBBS|Neuro","Brain Center 12 years","Brain treatment","Senior neurologist","8AM-1PM",4.9,250,approved
+doctor46@gmail.com,password123,Dr. Zayar Moe,959111111046,doctor46.jpg,26000,doctor,Gynecology,"MBBS|OG","Women Health 5 years","Pregnancy care","Gynecologist","3PM-6PM",4.4,92,pending
+doctor47@gmail.com,password123,Dr. Kyi Win,959111111047,doctor47.jpg,30000,doctor,Urology,"MBBS|Kidney","Kidney Care 7 years","Kidney consultant","Urologist","9AM-12PM",4.7,160,approved
+doctor48@gmail.com,password123,Dr. Hsu Hsu,959111111048,doctor48.jpg,25000,doctor,Psychiatry,"MBBS|Mental","Mind Hospital 6 years","Mental therapy","Psychiatrist","2PM-5PM",4.5,107,approved
+doctor49@gmail.com,password123,Dr. Nay Lin,959111111049,doctor49.jpg,28000,doctor,Dentistry,"BDS","Dental World 8 years","Dental implant","Dentist","10AM-1PM",4.6,126,approved
+doctor50@gmail.com,password123,Dr. Sandar Win,959111111050,doctor50.jpg,32000,doctor,Oncology,"MBBS|Cancer","Cancer Care 9 years","Cancer surgery","Oncologist","1PM-5PM",4.8,201,approved

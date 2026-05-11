@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 import Doctor from "../models/doctor-schema.js";
-import User from "../models/user-schema.js";
+import User from "../models/patient-schema.js";
 
 export const getCheckoutSession = async (req, res) => {
   try {

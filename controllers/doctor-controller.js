@@ -9,6 +9,8 @@
 // import missingField from "../utils/check-field.js";
 // import validateDoctor from "./doctor-controller/validator.js";
 
+import DoctorServices from "../services/doctor-services.js";
+
 // const doctorGateway = new generateDoctorGateway();
 
 // async function doctorInteractor(search) {
@@ -108,13 +110,33 @@
 // //select
 // //sequential
 
-// export const getAllDoctors = async (req, res) => {
-// 	const doctorServices = new DoctorServices();
-// 	const doctor = await doctorServices.listOfDoctors();
-// 	console.log(doctor);
-// 	res.json({ message: doctor });
-// };
+export const fetchAllDoctors = async (req, res) => {
+  const doctorServices = new DoctorServices();
+  const doctor = await doctorServices.listOfDoctors();
+  res.json({ data: doctor });
+};
 
+export const getDoctorProfile = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if (!id) {
+      return res.status(400).json({ message: "Doctor id is required" });
+    }
+
+    const doctorServices = new DoctorServices();
+    const doctor = await doctorServices.getDoctor(id);
+
+    if (!doctor) {
+      return res.status(404).json({ message: "Doctor not found" });
+    }
+
+    res.status(200).json({ data:doctor });
+  } catch (err) {
+    console.log("error:", err.message);
+    res.status(500).json({ message: err.message });
+  }
+};
 // export const getDoctorProfile = async (req, res) => {
 // 	const doctorId = req.userId;
 // 	try {

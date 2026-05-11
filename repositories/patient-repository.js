@@ -1,126 +1,136 @@
-import UserSchema from "../models/user-schema.js";
+import UserSchema from "../models/patient-schema.js";
 
 export default class PatientRepository {
-	constructor() {}
-	_validator(data) {
-		const errors = {};
+  constructor() {}
 
-		// EMAIL
+  _validator(data) {
+    const errors = {};
 
-		if (!data.email || typeof data.email !== "string") {
-			errors.email = "Email is required";
-		} else {
-			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // EMAIL
 
-			if (!emailRegex.test(data.email)) {
-				errors.email = "Invalid email format";
-			}
-		}
+    if (!data.email || typeof data.email !== "string") {
+      errors.email = "Email is required";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-		// PASSWORD
+      if (!emailRegex.test(data.email)) {
+        errors.email = "Invalid email format";
+      }
+    }
 
-		if (!data.password || typeof data.password !== "string") {
-			errors.password = "Password is required";
-		} else if (data.password.length < 6) {
-			errors.password = "Password must be at least 6 characters";
-		}
+    // PASSWORD
 
-		// NAME
+    if (!data.password || typeof data.password !== "string") {
+      errors.password = "Password is required";
+    } else if (data.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
 
-		if (!data.name || typeof data.name !== "string") {
-			errors.name = "Name is required";
-		} else if (data.name.trim().length < 2) {
-			errors.name = "Name must be at least 2 characters";
-		}
+    // NAME
 
-		// PHONE (string is better than number)
+    if (!data.name || typeof data.name !== "string") {
+      errors.name = "Name is required";
+    } else if (data.name.trim().length < 2) {
+      errors.name = "Name must be at least 2 characters";
+    }
 
-		if (data.phone !== undefined) {
-			const phoneStr = String(data.phone);
+    // PHONE (string is better than number)
 
-			const phoneRegex = /^\+?\d{7,15}$/;
+    if (data.phone !== undefined) {
+      const phoneStr = String(data.phone);
 
-			if (!phoneRegex.test(phoneStr)) {
-				errors.phone = "Invalid phone number";
-			}
-		}
+      const phoneRegex = /^\+?\d{7,15}$/;
 
-		// PHOTO (URL)
+      if (!phoneRegex.test(phoneStr)) {
+        errors.phone = "Invalid phone number";
+      }
+    }
 
-		if (data.photo) {
-			try {
-				new URL(data.photo);
-			} catch {
-				errors.photo = "Invalid photo URL";
-			}
-		}
+    // PHOTO (URL)
 
-		// ROLE
+    if (data.photo) {
+      try {
+        new URL(data.photo);
+      } catch {
+        errors.photo = "Invalid photo URL";
+      }
+    }
 
-		const allowedRoles = ["patient", "admin"];
+    // ROLE
 
-		if (data.role && !allowedRoles.includes(data.role)) {
-			errors.role = "Role must be patient or admin";
-		}
+    const allowedRoles = ["patient", "admin"];
 
-		// GENDER
+    if (data.role && !allowedRoles.includes(data.role)) {
+      errors.role = "Role must be patient or admin";
+    }
 
-		const allowedGender = ["male", "female", "other"];
+    // GENDER
 
-		if (data.gender && !allowedGender.includes(data.gender)) {
-			errors.gender = "Invalid gender value";
-		}
+    const allowedGender = ["male", "female", "other"];
 
-		// BLOOD TYPE
+    if (data.gender && !allowedGender.includes(data.gender)) {
+      errors.gender = "Invalid gender value";
+    }
 
-		const allowedBloodTypes = [
-			"A+",
-			"A-",
+    // BLOOD TYPE
 
-			"B+",
-			"B-",
+    const allowedBloodTypes = [
+      "A+",
+      "A-",
 
-			"AB+",
-			"AB-",
+      "B+",
+      "B-",
 
-			"O+",
-			"O-",
+      "AB+",
+      "AB-",
 
-			"N/A",
-		];
+      "O+",
+      "O-",
 
-		if (data.bloodType && !allowedBloodTypes.includes(data.bloodType)) {
-			errors.bloodType = "Invalid blood type";
-		}
+      "N/A",
+    ];
 
-		// APPOINTMENTS (ObjectId array check)
+    if (data.bloodType && !allowedBloodTypes.includes(data.bloodType)) {
+      errors.bloodType = "Invalid blood type";
+    }
 
-		if (data.appointments) {
-			if (!Array.isArray(data.appointments)) {
-				errors.appointments = "Appointments must be an array";
-			} else {
-				data.appointments.forEach((id, index) => {
-					if (!/^[0-9a-fA-F]{24}$/.test(id)) {
-						errors[`appointments[${index}]`] = "Invalid ObjectId";
-					}
-				});
-			}
-		}
+    // APPOINTMENTS (ObjectId array check)
 
-		return {
-			isValid: Object.keys(errors).length === 0,
+    if (data.appointments) {
+      if (!Array.isArray(data.appointments)) {
+        errors.appointments = "Appointments must be an array";
+      } else {
+        data.appointments.forEach((id, index) => {
+          if (!/^[0-9a-fA-F]{24}$/.test(id)) {
+            errors[`appointments[${index}]`] = "Invalid ObjectId";
+          }
+        });
+      }
+    }
 
-			errors,
-		};
-	}
-	async create(data) {
-		const { errors } = this._validator(data);
-		if (errors) {
-			throw new Error("error on insert to database");
-		}
-		await UserSchema.create(data);
-	}
-	async findByMail(mail) {
-		await UserSchema.findOne({ email });
-	}
+    return {
+      isValid: Object.keys(errors).length === 0,
+
+      errors,
+    };
+  }
+  //proceduer
+  async create(data) {
+    let result;
+    result = await UserSchema.create(data).select('-password');
+    return result;
+  }
+  //proceduer
+  async findByMail(email) {
+    let result = null;
+
+    result = await UserSchema.findOne({ email });
+
+    return result;
+  }
+  async findById(id){
+    let result = null;
+    result = await UserSchema.findById(id).select('-password');
+    return result;
+  }
 }

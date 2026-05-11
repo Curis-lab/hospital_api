@@ -1,11 +1,11 @@
 import csv from "csv-parser";
-import fs from "fs";
+import fs from "node:fs";
 import UserSchema from "../models/user-schema.js";
 import DoctorServices from "../services/doctor-services.js";
+import { spawn } from "node:child_process";
 
 export class CSVBulkUploader {
 	constructor() {
-		//collection
 		this.batchSize = 1000;
 	}
 	adjustWithSchema(incommingDataType) {
@@ -34,9 +34,9 @@ export class CSVBulkUploader {
 		return true;
 	}
 
-	async upload(filename) {
+	upload(filename) {
 		return new Promise((resolve, reject) => {
-			const stream = fs.createReadStream(filename);
+			const stream = fs.createReadStream(filename,{highWaterMark: 1});
 			const results = [];
 
 			const totalInserted = 0;
@@ -80,4 +80,18 @@ export class CSVBulkUploader {
 				.on("error", reject);
 		});
 	}
+	readFile(filename){
+		if(!filename){
+			throw Error('A file to watch must be specified!');
+		}
+		// fs.watch(filename,()=>{console.log(`File ${filename} changed!`)
+		// 	const ls = spawn('ls',['-l', filename]);
+		// 	let output = '';
+		// 	ls.stdout.on('data',chunk=> output += chunk ).on('end',()=>console.log(`${output} endl.`))
+		// });
+		// fs.writeFile(filename,'hello world', (err)=>{
+		// 	if(err) throw err;
+		// })
+		console.log(`Now watching ${filename} for change...`);
+	};
 }

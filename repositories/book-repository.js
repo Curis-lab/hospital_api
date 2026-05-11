@@ -6,4 +6,5 @@ export default class BookRepository {
 		this._validate(data);
 		return await BookSchema.create(data);
 	}
+	
 }

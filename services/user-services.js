@@ -1,8 +1,9 @@
-import UserSchema from "../models/user-schema.js";
+import UserSchema from "../models/patient-schema.js";
 import DoctorRepository from "../repositories/doctor-repository.js";
 import PatientRepository from "../repositories/patient-repository.js";
-// import generateAuthGateway from "../src/use-cases/generate-auth/generate-auth.gateway.js";
 import ROLE from "../utils/constant.js";
+
+
 
 export default class UserServices {
 	constructor(role = ROLE.PATIENT) {
@@ -34,5 +35,9 @@ export default class UserServices {
 	async getUserById(id) {
 		const user = await UserSchema.findById(id);
 		return user;
+	}
+	async create(patientData){
+		
+		await this.patientRepos.create(data);
 	}
 }

@@ -15,6 +15,7 @@ function tokenGenerate(data) {
 }
 
 async function isCorrectPassword(currentpwd, dbpwd) {
+	
 	const isMatch = await bcrypt.compare(currentpwd, dbpwd);
 	return isMatch;
 }

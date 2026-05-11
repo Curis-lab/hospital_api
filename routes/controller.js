@@ -5,6 +5,7 @@ export default class Controller {
     this.router = Router();
   }
 
+  //this function is not working correctly.
   route(options) {
     if (options.middleware) {
       this.router[options.method](
@@ -24,6 +25,9 @@ export default class Controller {
       handler,
     });
   }
+
+  //handler is function , midddleware is function
+
   post(path, handler, middleware) {
     this.route({
       method: "post",
@@ -32,6 +36,7 @@ export default class Controller {
       handler,
     });
   }
+
   use(path, handler) {
     this.route({
       method: "use",
@@ -47,6 +52,7 @@ export default class Controller {
       handler,
     });
   }
+
   patch(path, handler, middleware) {
     this.route({
       method: "patch",
@@ -55,6 +61,7 @@ export default class Controller {
       handler,
     });
   }
+
   delete(path, handler, middleware) {
     this.route({
       method: "delete",
@@ -66,7 +73,6 @@ export default class Controller {
   fileUpload() {
     //imagekit
     //multer
-	
   }
 
   get routes() {

@@ -21,5 +21,5 @@ export default class ImageKitServices {
 
     return uploaded;
   }
-  async deleteImage(image){}
+  async deleteImage(image) {}
 }

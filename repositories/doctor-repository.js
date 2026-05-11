@@ -1,4 +1,5 @@
 import DoctorSchema from "../models/doctor-schema.js";
+import crypto from "node:crypto";
 
 export default class DoctorRepository {
   _validate(data) {
@@ -110,12 +111,26 @@ export default class DoctorRepository {
   }
 
   _response(data) {
+    // change the logic and make some change. 
     return {
+      id: data._id,
       name: data.name,
       email: data.email,
+      password: data.password,
       phone: data.phone,
+      photo: data.photo,
       ticketPrice: data.ticketPrice,
       specialization: data.specialization,
+      qualifications: data.qualifications,
+      experiences: data.experiences,
+      bio: data.bio,
+      about: data.about,
+      timeSlots: data.timeSlots,
+      reviews: data.reviews,
+      averageRating: data.averageRating,
+      totalRating: data.totalRating,
+      isApproved: data.isApproved,
+      appointments: data.appointments,
     };
   }
   async create(data) {
@@ -126,7 +141,6 @@ export default class DoctorRepository {
     }
 
     await DoctorSchema.create(data);
-	
   }
   async delete(id) {
     await DoctorSchema.findByIdAndDelete(id);
@@ -135,20 +149,22 @@ export default class DoctorRepository {
     await DoctorSchema.findOne({ email });
   }
   async findById(id) {
-    const result = DoctorSchema.findById(id);
-    return result;
+    const result = await DoctorSchema.findById(id);
+    return this._response(result);
   }
   //this is only async avoid zalgo
   async all() {
     const results = await DoctorSchema.find();
-    if (results) {
-      return results.map((result) => this._response(result));
-    } else {
-    }
+    return results.map((result) => this._response(result));
   }
+  
   async update(id, data) {
     await DoctorSchema.findByIdAndUpdate(id, {
       ...data,
     });
+  }
+
+  async insertMany(data) {
+    await DoctorSchema.insertMany(data);
   }
 }

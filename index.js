@@ -4,7 +4,7 @@ async function init() {
 	try {
 		startHTTPServer();
 	} catch (err) {
-		console.log("Bootstrap error", err);
+		console.log("Bootstrap error 🟢", err);
 	}
 }
 
